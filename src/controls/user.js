@@ -1,4 +1,4 @@
-const { LoginDb, SighinDb, GetUsersDb } = require("../reposetory/user");
+const { LoginDb, SighinDb } = require("../reposetory/user");
 
 const Login = (req, res) => {
     console.log(req.body);
@@ -39,4 +39,4 @@ const Sighin = (req, res) => {
         })
 }
 
-module.exports = { Login, Sighin, GetAllUsers };
+module.exports = { Login, Sighin };

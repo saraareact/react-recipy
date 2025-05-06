@@ -28,41 +28,6 @@ const AddRecipy = (req, res) => {
     const {
         Name, UserId, Categoryid, Img, Duration, Difficulty, Description,
         Ingridents, Instructions } = req.body;
-    if (!Name) {
-        console.log("שם המתכון חסר.");
-    }
-
-    if (!UserId) {
-        console.log("UserId חסר.");
-    }
-
-    if (!Categoryid) {
-        console.log("Categoryid חסר.");
-    }
-
-    if (!Img) {
-        console.log("תמונת המתכון חסרה.");
-    }
-
-    if (!Duration) {
-        console.log("משך ההכנה חסר.");
-    }
-
-    if (!Difficulty) {
-        console.log("רמת הקושי חסרה.");
-    }
-
-    if (!Description) {
-        console.log("תיאור המתכון חסר.");
-    }
-
-    if (!Ingridents) {
-        console.log("רכיבי המתכון חסרים.");
-    }
-
-    if (!Instructions) {
-        console.log("הוראות ההכנה חסרות.");
-    }
 
     if (!Name || !UserId || !Categoryid || !Img || !Duration || !Difficulty || !Description || !Ingridents || !Instructions) {
         // לא נשלח מידע
