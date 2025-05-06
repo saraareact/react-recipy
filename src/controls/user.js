@@ -1,8 +1,10 @@
-const { LoginDb, SighinDb } = require("../reposetory/user");
+const { LoginDb, SighinDb, GetUsersDb } = require("../reposetory/user");
 
 const Login = (req, res) => {
-    const { UserName, Password } = req.body;
-    LoginDb(UserName, Password)
+    console.log(req.body);
+
+    const { Name, Password } = req.body;
+    LoginDb(Name, Password)
         .then(findUser => {
             if (findUser) {
                 return res.send(findUser)
@@ -24,10 +26,23 @@ const Sighin = (req, res) => {
 
     if (!UserName || !Name || !Password || !Phone || !Email || !Tz) {
         // לא נשלח מידע
-        return res.status(400).send('לא מולאו כל הפרטים')
+        return res.status(400).send('לא מולאו כל הפרטים' + UserName + " " + Password + " " + Name + " " + Phone + "" + Email + "" + Tz);
     };
+
     SighinDb({ UserName, Password, Name, Phone, Email, Tz })
         .then(newUser => res.send(newUser))
+        .catch(err => {
+            if (err?.errors[0]) {
+                return res.status(400).send("!!!!!!!!!!!!!1" + err?.errors[0]?.message)
+            }
+            return res.status(400).send("!!!!!!!!!!!!" + err)
+        })
+}
+
+
+const GetAllUsers = (_req, res) => {
+    GetUsersDb()
+        .then(x => res.send(x))
         .catch(err => {
             if (err?.errors[0]) {
                 return res.status(400).send(err?.errors[0]?.message)
@@ -37,4 +52,4 @@ const Sighin = (req, res) => {
         })
 }
 
-module.exports = { Login, Sighin };
+module.exports = { Login, Sighin, GetAllUsers };
